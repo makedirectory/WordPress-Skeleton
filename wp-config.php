@@ -61,7 +61,7 @@ define( 'WP_DEBUG_DISPLAY', false );
 // Debugging? Enable these. Can also enable them in local-config.php
 // =================================================================
 // define( 'SAVEQUERIES', true );
-// define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', false );
 
 // ======================================
 // Load a Memcached config if we have one
@@ -76,6 +76,8 @@ if ( !defined( 'ABSPATH' ) )
 	define( 'ABSPATH', dirname( __FILE__ ) . '/wp/' );
 require_once( ABSPATH . 'wp-settings.php' );
 
-# Use for uploads
-#@ini_set( 'upload_max_filesize' , '512M' );
-#@ini_set( 'post_max_size', '512M');
+// =================================================================
+// Increase PHP upload limit
+// =================================================================
+#define( 'upload_max_filesize' , '512M' );
+#define( 'post_max_size', '256M');
