@@ -5,19 +5,24 @@
 if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define( 'WP_LOCAL_DEV', true );
 	include( dirname( __FILE__ ) . '/local-config.php' );
+} else if ( file_exists( dirname( __FILE__ ) . '/eb-setup.php' ) ) {
+	define( 'WP_LOCAL_DEV', true );
+	include( dirname( __FILE__ ) . '/eb-setup.php' );
 } else {
 	define( 'WP_LOCAL_DEV', false );
-	define('DB_NAME', $_SERVER['RDS_DB_NAME']);
-	define('DB_USER', $_SERVER['RDS_USERNAME']);
-	define('DB_PASSWORD', $_SERVER['RDS_PASSWORD']);
-	define('DB_HOST', $_SERVER['RDS_HOSTNAME']);
+	define('DB_NAME', $_SERVER['RDS_DB_NAME'] );
+	define('DB_USER', $_SERVER['RDS_USERNAME'] );
+	define('DB_PASSWORD', $_SERVER['RDS_PASSWORD'] );
+	define('DB_HOST', $_SERVER['RDS_HOSTNAME'] );
+	define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
 }
 
 // ========================
 // Custom Content Directory
 // ========================
+define( 'WP_SITEURL', WP_HOME . '/wp' );
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
-define( 'WP_CONTENT_URL', 'https://' . $_SERVER['HTTP_HOST'] . '/content' );
+define( 'WP_CONTENT_URL', WP_HOME . '/content' );
 
 // ================================================
 // You almost certainly do not want to change these
@@ -29,14 +34,20 @@ define( 'DB_COLLATE', '' );
 // Salts, for security
 // Grab these from: https://api.wordpress.org/secret-key/1.1/salt
 // ==============================================================
-define('AUTH_KEY',         $_SERVER['AUTH_KEY']);
-define('SECURE_AUTH_KEY',  $_SERVER['SECURE_AUTH_KEY']);
-define('LOGGED_IN_KEY',    $_SERVER['LOGGED_IN_KEY']);
-define('NONCE_KEY',        $_SERVER['NONCE_KEY']);
-define('AUTH_SALT',        $_SERVER['AUTH_SALT']);
-define('SECURE_AUTH_SALT', $_SERVER['SECURE_AUTH_SALT']);
-define('LOGGED_IN_SALT',   $_SERVER['LOGGED_IN_SALT']);
-define('NONCE_SALT',       $_SERVER['NONCE_SALT']);
+
+if ( file_exists( dirname( __FILE__ ) . '/eb-setup.php' ) ) {
+	define( 'WP_LOCAL_DEV', true );
+	include( dirname( __FILE__ ) . '/eb-setup.php' );
+} else {
+	define('AUTH_KEY',         $_SERVER['AUTH_KEY'] );
+	define('SECURE_AUTH_KEY',  $_SERVER['SECURE_AUTH_KEY'] );
+	define('LOGGED_IN_KEY',    $_SERVER['LOGGED_IN_KEY'] );
+	define('NONCE_KEY',        $_SERVER['NONCE_KEY'] );
+	define('AUTH_SALT',        $_SERVER['AUTH_SALT'] );
+	define('SECURE_AUTH_SALT', $_SERVER['SECURE_AUTH_SALT'] );
+	define('LOGGED_IN_SALT',   $_SERVER['LOGGED_IN_SALT'] );
+	define('NONCE_SALT',       $_SERVER['NONCE_SALT'] );
+}
 
 // ==============================================================
 // Table prefix

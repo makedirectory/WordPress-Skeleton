@@ -10,6 +10,7 @@ define( 'DB_NAME', 'local_db_name' );
 define( 'DB_USER', 'local_db_user' );
 define( 'DB_PASSWORD', 'local_db_password' );
 define( 'DB_HOST', 'localhost' ); // Probably 'localhost'
+define( 'WP_HOME', 'http://example.com'] ); //Local hostname
 
 // ===========================================================================================
 // This can be used to programatically set the stage when deploying (e.g. production, staging)

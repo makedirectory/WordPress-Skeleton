@@ -94,7 +94,7 @@ If you don't have pip, follow the instructions [here](http://docs.aws.amazon.com
         INFO: createEnvironment is starting.
 
 ## Networking configuration
-Modify the configuration files in the .ebextensions folder with the IDs of your [default VPC and subnets](https://console.aws.amazon.com/vpc/home#subnets:filter=default), and [your public IP address](https://www.google.com/search?q=what+is+my+ip).
+Modify the configuration files in the .ebextensions folder with the IDs of your [default VPC and subnets](https://console.aws.amazon.com/vpc/home#subnets:filter=default), and [your public IP address](https://www.google.com/search?q=what+is+my+ip). You'll need to setup a VPC in the AWS console with Availability in at a minimum of two regions, in order to get these values.
 
  - `.ebextensions/efs-create.config` creates an EFS file system and mount points in each Availability Zone / subnet in your VPC. Identify your default VPC and subnet IDs in the [VPC console](https://console.aws.amazon.com/vpc/home#subnets:filter=default). If you have not used the console before, use the region selector to select the same region that you chose for your environment.
  - `.ebextensions/ssh.config` restricts access to your environment to your IP address to protect it during the WordPress installation process. Replace the placeholder IP address near the top of the file with your public IP address.
@@ -199,3 +199,7 @@ Now that you've gone through all the trouble of installing your site, you will w
 
 **Q:** Does this support WordPress in multisite mode?  
 **A:** Yes, as of WordPress v3.5 which was released in December, 2012.
+
+
+# Note:
+Does the sub module install automatically or does it require additional commands?
