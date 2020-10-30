@@ -14,13 +14,12 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define('DB_USER', $_SERVER['RDS_USERNAME'] );
 	define('DB_PASSWORD', $_SERVER['RDS_PASSWORD'] );
 	define('DB_HOST', $_SERVER['RDS_HOSTNAME'] );
-	define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
 }
 
 // ========================
 // Custom Content Directory
 // ========================
-define( 'WP_SITEURL', WP_HOME . '/wp' );
+define( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/wp' );
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/content' );
 
@@ -84,8 +83,8 @@ if ( file_exists( dirname( __FILE__ ) . '/memcached.php' ) )
 // Bootstrap WordPress
 // ===================
 if ( !defined( 'ABSPATH' ) )
-	define( 'ABSPATH', dirname( __FILE__ ) . '/wp/' );
-require_once( ABSPATH . 'wp-settings.php' );
+	define( 'ABSPATH', dirname( __FILE__ ) . '/wp' );
+require_once( ABSPATH . '/wp-settings.php' );
 
 // =================================================================
 // Increase PHP upload limit
