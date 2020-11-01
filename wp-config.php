@@ -19,7 +19,9 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 // ========================
 // Custom Content Directory
 // ========================
-define( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/wp' );
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
+       $_SERVER['HTTPS']='on';
+define( 'WP_SITEURL', 'https://' . $_SERVER['HTTP_HOST'] . '/wp' );
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/content' );
 
@@ -89,5 +91,5 @@ require_once( ABSPATH . '/wp-settings.php' );
 // =================================================================
 // Increase PHP upload limit
 // =================================================================
-#ini_set( 'upload_max_filesize' , '512M' );
-#ini_set( 'post_max_size', '256M');
+#@ini_set( 'upload_max_filesize' , '512M' );
+#@ini_set( 'post_max_size', '256M');
