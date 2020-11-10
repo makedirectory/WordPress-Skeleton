@@ -17,13 +17,32 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 }
 
 // ========================
+// Define site Home and URL
+// add https for use with SSL
+// ========================
+define( 'WP_HOME',  'http://' . $_SERVER['HTTP_HOST'] );
+define( 'WP_SITEURL', WP_HOME . '/wp' );
+
+// ========================
+// Handle HTTPS on Amazon AWS Elastic Load Balancer, CloudFlare, and some others
+// ========================
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+    $_SERVER['HTTPS']='on';
+
+// ========================
 // Custom Content Directory
 // ========================
-if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
-       $_SERVER['HTTPS']='on';
-define( 'WP_SITEURL', 'https://' . $_SERVER['HTTP_HOST'] . '/wp' );
-define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
-define( 'WP_CONTENT_URL', WP_HOME . '/content' );
+// Custom content directory
+define( 'WP_CONTENT_DIR',  dirname( __FILE__ ) . '/content' );
+define( 'WP_CONTENT_URL',  WP_HOME . '/content' );
+// Custom plugin directory
+define( 'WP_PLUGIN_DIR',   dirname( __FILE__ ) . '/content/plugins' );
+define( 'WP_PLUGIN_URL',   WP_HOME . '/content/plugins' );
+// Custom mu plugin directory
+define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
+define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
+// Custom Uploads directory
+define( 'UPLOADS', '/content/uploads' );
 
 // ================================================
 // You almost certainly do not want to change these
