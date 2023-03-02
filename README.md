@@ -1,3 +1,5 @@
+**This project is no longer actively maintained.**
+
 # Deploying WordPress on Elastic Beanstalk
 Use the EB CLI to create an Elastic Beanstalk environment with an attached RDS DB and EFS file system to provide WordPress with a MySQL database and shared storage for uploaded files.
 
